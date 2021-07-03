@@ -6,8 +6,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+import java.io.IOException;
 
+public class Main extends Application {
+    Stage stg =new Stage();
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
@@ -15,7 +17,18 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
+    public void loadStage(String fxml) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fxml));
+            stg.setScene(new Scene(root));
+            stg.setTitle("skylabsNetMonitor");
+            stg.show();
+            stg.setResizable(false);
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);
